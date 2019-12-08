@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface TaskService {
     List<TaskDTO> getAllTasks();
+    String createTask(TaskDTO task);
 }
