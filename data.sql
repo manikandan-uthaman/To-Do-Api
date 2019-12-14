@@ -20,4 +20,3 @@ CREATE TABLE `tasks` (
 	INDEX `FK_STATUS` (`task_status`),
 	CONSTRAINT `FK_STATUS` FOREIGN KEY (`task_status`) REFERENCES `status` (`name`)
 );
-

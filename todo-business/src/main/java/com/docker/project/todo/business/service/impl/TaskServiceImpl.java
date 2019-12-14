@@ -34,4 +34,14 @@ public class TaskServiceImpl implements TaskService {
         TaskBO bo = taskRepository.save(taskMapper.mapTaskDtoToBo(task));
         return bo.getId().toString();
     }
+
+    @Override
+    public int updateStatus(TaskDTO task) {
+        return taskRepository.updateTaskStatus(task.getTaskId(), task.getTaskStatus().toString());
+    }
+
+    @Override
+    public void deleteTask(int taskId) {
+        taskRepository.deleteById(taskId);
+    }
 }

@@ -17,7 +17,7 @@ public class TaskMapper {
         dto.setTaskId(taskBO.getId());
         dto.setTaskName(taskBO.getTaskName());
         dto.setTaskDescription(taskBO.getTaskDesc());
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String text = df.format(taskBO.getTargetDate());
         dto.setTargetDate(text);
         dto.setTaskStatus(TaskStatus.valueOf(taskBO.getTaskStatus()));
@@ -26,9 +26,12 @@ public class TaskMapper {
 
     public TaskBO mapTaskDtoToBo(TaskDTO taskDTO){
         TaskBO bo = new TaskBO();
+        if(taskDTO.getTaskId() != 0){
+            bo.setId(taskDTO.getTaskId());
+        }
         bo.setTaskName(taskDTO.getTaskName());
         bo.setTaskDesc(taskDTO.getTaskDescription());
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date dt = java.sql.Date.valueOf("9999-12-31");
         try {
             dt = new Date(df.parse(taskDTO.getTargetDate()).getTime());
