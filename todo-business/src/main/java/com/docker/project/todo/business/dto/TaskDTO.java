@@ -11,6 +11,8 @@ public class TaskDTO implements Serializable {
     String taskDescription;
     String targetDate;
     TaskStatus taskStatus;
+    String fileId;
+    String fileName;
 
     public int getTaskId() {
         return taskId;
@@ -50,6 +52,22 @@ public class TaskDTO implements Serializable {
 
     public void setTaskStatus(TaskStatus taskStatus) {
         this.taskStatus = taskStatus;
+    }
+
+    public String getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     @Override

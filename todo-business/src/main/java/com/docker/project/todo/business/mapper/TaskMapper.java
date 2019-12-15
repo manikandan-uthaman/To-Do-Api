@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Optional;
 
 @Service
 public class TaskMapper {
@@ -21,6 +22,10 @@ public class TaskMapper {
         String text = df.format(taskBO.getTargetDate());
         dto.setTargetDate(text);
         dto.setTaskStatus(TaskStatus.valueOf(taskBO.getTaskStatus()));
+        Optional.ofNullable(taskBO.getFile()).ifPresent(file -> {
+            dto.setFileId(file.getId());
+            dto.setFileName(file.getFileName());
+        });
         return dto;
     }
 

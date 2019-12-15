@@ -15,4 +15,10 @@ public interface TaskRepository extends CrudRepository<TaskBO, Integer> {
     @Modifying
     @Query(value = "UPDATE tasks t SET t.task_status= ?2 WHERE t.id= ?1", nativeQuery = true)
     int updateTaskStatus(@Param("taskId") int taskId, @Param("status") String status);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE tasks t SET t.file_id = ?1 WHERE t.id = ?2", nativeQuery = true)
+    int updateFileDetail(String fileId, String taskId);
+
 }

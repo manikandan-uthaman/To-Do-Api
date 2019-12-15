@@ -23,6 +23,10 @@ public class TaskBO {
     @Column(name="task_status")
     private String taskStatus;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "file_id")
+    private DBFileBO file;
+
     public Integer getId() {
         return id;
     }
@@ -61,6 +65,14 @@ public class TaskBO {
 
     public void setTaskStatus(String taskStatus) {
         this.taskStatus = taskStatus;
+    }
+
+    public DBFileBO getFile() {
+        return file;
+    }
+
+    public void setFile(DBFileBO file) {
+        this.file = file;
     }
 
     @Override
