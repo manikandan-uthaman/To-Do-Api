@@ -39,5 +39,6 @@
     <module>todo-web</module>
     <module>todo-business</module>
     <module>todo-data</module>
+    <module>todo-war</module>
   </modules>
 </project>
