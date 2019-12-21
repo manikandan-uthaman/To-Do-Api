@@ -23,7 +23,7 @@ public class TaskBO {
     @Column(name="task_status")
     private String taskStatus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "file_id")
     private DBFileBO file;
 

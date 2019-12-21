@@ -2,8 +2,10 @@ package com.docker.project.todo.business.mapper;
 
 import com.docker.project.todo.business.constants.TaskStatus;
 import com.docker.project.todo.business.dto.TaskDTO;
+import com.docker.project.todo.entity.DBFileBO;
 import com.docker.project.todo.entity.TaskBO;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.sql.Date;
 import java.text.DateFormat;
@@ -45,6 +47,11 @@ public class TaskMapper {
         }
         bo.setTargetDate(dt);
         bo.setTaskStatus(taskDTO.getTaskStatus().toString());
+        if(!StringUtils.isEmpty(taskDTO.getFileId())){
+            DBFileBO file = new DBFileBO();
+            file.setId(taskDTO.getFileId());
+            bo.setFile(file);
+        }
         return bo;
     }
 }

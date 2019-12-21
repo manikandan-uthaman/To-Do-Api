@@ -24,7 +24,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     @Transactional
-    public FileDTO storeFile(MultipartFile file, String taskId) {
+    public FileDTO storeFile(MultipartFile file) {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
         try{
@@ -33,7 +33,7 @@ public class FileServiceImpl implements FileService {
             }
             DBFileBO dbFileBO = new DBFileBO(fileName, file.getContentType(), file.getBytes());
             dbFileBO = dbFileRepository.save(dbFileBO);
-            taskRepository.updateFileDetail(dbFileBO.getId(), taskId);
+//            taskRepository.updateFileDetail(dbFileBO.getId(), taskId);
             FileDTO fileDTO = new FileDTO();
             fileDTO.setFile_id(dbFileBO.getId());
             fileDTO.setFile_name(dbFileBO.getFileName());

@@ -18,9 +18,9 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
-    @PostMapping("/upload/{taskId}")
-    public FileDTO uploadFile(@RequestParam("file") MultipartFile file, @PathVariable("taskId") String taskId){
-        return fileService.storeFile(file, taskId);
+    @PostMapping("/upload")
+    public FileDTO uploadFile(@RequestParam("file") MultipartFile file){
+        return fileService.storeFile(file);
     }
 
     @GetMapping("/download/{fileId}")
