@@ -23,7 +23,6 @@ public class TaskController {
     @PostMapping("/add")
     @ResponseBody
     public String createTask(@RequestBody TaskDTO task){
-        System.out.print(task.toString());
         return taskService.createTask(task);
     }
 
