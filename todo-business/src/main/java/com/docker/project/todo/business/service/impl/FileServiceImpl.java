@@ -33,7 +33,6 @@ public class FileServiceImpl implements FileService {
             }
             DBFileBO dbFileBO = new DBFileBO(fileName, file.getContentType(), file.getBytes());
             dbFileBO = dbFileRepository.save(dbFileBO);
-//            taskRepository.updateFileDetail(dbFileBO.getId(), taskId);
             FileDTO fileDTO = new FileDTO();
             fileDTO.setFile_id(dbFileBO.getId());
             fileDTO.setFile_name(dbFileBO.getFileName());

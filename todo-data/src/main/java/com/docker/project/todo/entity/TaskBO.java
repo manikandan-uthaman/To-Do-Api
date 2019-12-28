@@ -23,6 +23,9 @@ public class TaskBO {
     @Column(name="task_status")
     private String taskStatus;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "file_id")
     private DBFileBO file;
@@ -73,6 +76,14 @@ public class TaskBO {
 
     public void setFile(DBFileBO file) {
         this.file = file;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override

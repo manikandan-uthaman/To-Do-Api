@@ -59,12 +59,12 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequestDTO signUpRequest) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return new ResponseEntity(new ApiResponseDTO(false, "Username is already taken!"),
+            return new ResponseEntity(new ApiResponseDTO(false, "USERNAME_UNAVAILABLE"),
                     HttpStatus.BAD_REQUEST);
         }
 
         if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity(new ApiResponseDTO(false, "Email Address already in use!"),
+            return new ResponseEntity(new ApiResponseDTO(false, "EMAIL_UNAVAILABLE"),
                     HttpStatus.BAD_REQUEST);
         }
 

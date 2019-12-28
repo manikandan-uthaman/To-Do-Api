@@ -31,8 +31,9 @@ public class TaskMapper {
         return dto;
     }
 
-    public TaskBO mapTaskDtoToBo(TaskDTO taskDTO){
+    public TaskBO mapTaskDtoToBo(TaskDTO taskDTO, Long userId){
         TaskBO bo = new TaskBO();
+        bo.setUserId(userId);
         if(taskDTO.getTaskId() != 0){
             bo.setId(taskDTO.getTaskId());
         }

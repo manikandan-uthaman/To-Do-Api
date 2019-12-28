@@ -21,27 +21,27 @@ public class TaskServiceImpl implements TaskService {
     private TaskMapper taskMapper;
 
     @Override
-    public List<TaskDTO> getAllTasks() {
+    public List<TaskDTO> getAllTasks(Long userId) {
         List<TaskDTO> tasksList = new ArrayList<>();
-        taskRepository.findAll().forEach(bo -> {
+        taskRepository.findAllByUserId(userId).forEach(bo -> {
             tasksList.add(taskMapper.mapTaskBOToDto(bo));
         });
         return tasksList;
     }
 
     @Override
-    public String createTask(TaskDTO task) {
-        TaskBO bo = taskRepository.save(taskMapper.mapTaskDtoToBo(task));
+    public String createTask(TaskDTO task, Long userId) {
+        TaskBO bo = taskRepository.save(taskMapper.mapTaskDtoToBo(task, userId));
         return bo.getId().toString();
     }
 
     @Override
-    public int updateStatus(TaskDTO task) {
-        return taskRepository.updateTaskStatus(task.getTaskId(), task.getTaskStatus().toString());
+    public int updateStatus(TaskDTO task, Long userId) {
+        return taskRepository.updateTaskStatus(task.getTaskId(), task.getTaskStatus().toString(), userId);
     }
 
     @Override
-    public void deleteTask(int taskId) {
-        taskRepository.deleteById(taskId);
+    public void deleteTask(int taskId, Long userId) {
+        taskRepository.deleteTask(taskId, userId);
     }
 }
