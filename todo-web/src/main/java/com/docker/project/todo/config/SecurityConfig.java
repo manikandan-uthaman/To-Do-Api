@@ -4,9 +4,9 @@ import com.docker.project.todo.security.CustomUserDetailsService;
 import com.docker.project.todo.security.JwtAuthenticationEntryPoint;
 import com.docker.project.todo.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,6 +27,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         prePostEnabled = true
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Value("${spring.security.unauth.urls}")
+    String unauthURLs;
 
     @Autowired
     CustomUserDetailsService customUserDetailsService;
@@ -71,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                 .authorizeRequests()
-                    .antMatchers("/api/auth/**")
+                    .antMatchers(unauthURLs.split(","))
                         .permitAll()
                     .anyRequest()
                         .authenticated();
